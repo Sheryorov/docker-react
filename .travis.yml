@@ -1,10 +1,12 @@
 sudo: required
 services:
   - docker
-language: node_js
 
 before_install:
   - docker build -t sheryorov/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run sheryorov/docker-react npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
